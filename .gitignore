@@ -130,6 +130,10 @@ celerybeat.pid
 # Environments
 .env
 .venv
+bin/
+include/
+lib/
+share/
 env/
 venv/
 ENV/
