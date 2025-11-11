@@ -1,8 +1,0 @@
-﻿product_name;product_description;shelflife;sample_weight;cn_code;country_of_origin;product_group;product_family;product_family_internal;product_segment;common_applications;dairy;bakery_&_sweets;nutrition;savoury;single_ingredients;yoghurt_&_sour_milk_products;cream_cheese;processed_cheese;milk_based_beverages;cake_filling_&_decoration_creme;emulsifiers_for_pastry_products;egg_substitution_and_egg_reduction;glazing_agents;cold-cream_and_custard_cream;hot_beverages;energy_bars;protein_enriched_dairy_products;sports_nutrition;protein_shakes;nutritional_meals;cooked,_scalded_and_raw_sausage;processed_meat_products;cooked_ham;soups_and_sauces;dressings_and_mayonnaises;kosher;"super
-_kosher";halal;vlog;rspo_mb;rspo_sg;vegetarian;vegan;"non-added_
-sugar";"lactose
-free";"gluten
-free";palmfree;"clean
-label";acid_stable;palm_;coconut;"
-sunflower";hydrogenated;non_hydrogenated;<40;40-70;70-80;0-20;20-50;50-70;70-95
-text;text;integer;list;text;text;text;text;text;list;list;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;text;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer;integer
