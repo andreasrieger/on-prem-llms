@@ -12,8 +12,9 @@ from qdrant_client.models import PointStruct, Distance, VectorParams
 # qdrant_client = QdrantClient(host="localhost", port=6333)
 qdrant_client = QdrantClient(":memory:")
 
+
 # Load the dataframe with embeddings
-def store_vectors_in_qdrant(df, col_names, collection_name):
+def store_vectors_in_qdrant(df, collection_name):
 
     # Create collection if it doesn't exist
     if not qdrant_client.collection_exists(collection_name):
@@ -21,14 +22,6 @@ def store_vectors_in_qdrant(df, col_names, collection_name):
             collection_name=collection_name,
             vectors_config=VectorParams(size=len(df['embedding'].iloc[0]), distance=Distance.COSINE)
         )
-
-    """    # Example of integrating with LangChain
-    vector_store = QdrantVectorStore(
-        client=qdrant_client,
-        collection_name=collection_name,
-        embedding=embedding
-    )
-    """
 
     # Prepare points to be uploaded
     points = []
@@ -38,8 +31,8 @@ def store_vectors_in_qdrant(df, col_names, collection_name):
             id=idx,
             vector=row['embedding'],
             payload={
-                "product_name": row[col_names[0]],
-                "product_description": row[col_names[1]],
+                "product_name": row['product_name_alias'],
+                "product_description": row['product_description'],
             }
         )
         points.append(point)
@@ -51,10 +44,11 @@ def store_vectors_in_qdrant(df, col_names, collection_name):
         points=points
     )
 
-    return f"Stored {len(points)} vectors in Qdrant collection '{collection_name}'. Operation info: {operation_info}"
+    # return f"Stored {len(points)} vectors in Qdrant collection '{collection_name}'."
+    return True
+
 
 # Perform a search in the collection
-
 def perform_search_in_qdrant(query, collection_name, limit=3):
     return qdrant_client.query_points(
         collection_name=collection_name,

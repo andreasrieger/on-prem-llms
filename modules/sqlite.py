@@ -1,4 +1,14 @@
 import sqlite3
+from sqlalchemy import create_engine
+
+
+def write_df_to_sqlite(df):
+
+    '''Function to write a pandas DataFrame to an SQLite database'''
+    engine = create_engine("sqlite+pysqlite:///:memory:", echo=False, future=True)
+    res = df.to_sql("products", con=engine, if_exists="replace", index=False)
+    return res
+
 
 def create_table():
 
@@ -41,4 +51,4 @@ def read_db(db):
         SELECT * FROM recordings
     '''
     c.execute(sql)
-    print_db_entries(c.fetchall())
+    return c.fetchall()

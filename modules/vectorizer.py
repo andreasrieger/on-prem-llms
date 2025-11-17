@@ -2,8 +2,8 @@
 # Using Ollama to generate embeddings
 # may take some time depending on the size of the dataframe
 
-import ollama
-from modules import qdrant
+import ollama, json
+import pandas as pd
 
 
 # Function to generate embeddings
@@ -20,13 +20,22 @@ def convert_str_to_list(obj):
     return obj
 
 
-def something(obj, collection_name):
-    # res = obj[0].assign(embedding=None)
+def vectorize_dataframe(df):
+
+    # df = pd.DataFrame(df, index=None)  # Ensure df is a DataFrame
+
+    # Preprocess the DataFrame: strip whitespace and handle missing values
+    df.map(lambda x: x.strip() if isinstance(x, str) else x).fillna('null')
+
+    # Convert each row of the DataFrame to a JSON string
+    df['json_data'] = df.apply(lambda row: row.to_json(), axis=1)
+    # df['json_data'] = df.apply(lambda row: json.dumps(row.to_dict(), ensure_ascii=False), axis=1)
+
+    df['embedding'] = None  # Initialize the embedding column
 
     # Generate embeddings for each row in the DataFrame
-    for i, row in res.iterrows(): # using iterrows() in a DataFrame?
+    for i, row in df.iterrows():
         # Convert the json string into a vector
-        res.at[i, 'embedding'] = generate_embeddings(row['json'])
+        df.at[i, 'embedding'] = generate_embeddings(row['json_data'])
 
-    # Store the vectors in Qdrant
-    return qdrant.store_vectors_in_qdrant(res, collection_name=collection_name)
+    return df

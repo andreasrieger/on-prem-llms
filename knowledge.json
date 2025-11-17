@@ -1,1 +1,525 @@
-{"object_type": "table", "table_name": "products", "schema": {"product_name_alias": {"dtype": "object", "non_null_count": "137", "null_count": "0", "unique_values": "137", "sample_values": "['Product 101', 'Product 102', 'Product 103', 'Product 104', 'Product 105']", "statistics": null}, "product_description": {"dtype": "object", "non_null_count": "137", "null_count": "0", "unique_values": "102", "sample_values": "['Casein', 'Hydrogenated dairy oil 40%, includes SWP and Lactose, milky taste, freeze and thaw stable', 'Hydrogenated dairy oil 60%, includes SWP and Lactose, milky taste, freeze and thaw stable, high whitening power', 'Milk Protein Compound', 'High protein ~74% + lactose, egg replacer in bakery applications']", "statistics": null}, "shelflife": {"dtype": "object", "non_null_count": "137", "null_count": "0", "unique_values": "5", "sample_values": "['36 months', '18 months', '24 months', '12 months', '15 months']", "statistics": null}, "CN_code": {"dtype": "object", "non_null_count": "137", "null_count": "0", "unique_values": "12", "sample_values": "['3501 1090', '1901 9099', '2106 9092', '2106 9098', '3502 2091']", "statistics": null}, "country_of_origin": {"dtype": "object", "non_null_count": "137", "null_count": "0", "unique_values": "5", "sample_values": "['DE', 'AT', 'CH', 'US', 'NL']", "statistics": null}, "product_group": {"dtype": "object", "non_null_count": "137", "null_count": "0", "unique_values": "16", "sample_values": "['Casein', 'Fat Powder', 'Milk Protein Compound', 'Buttermilkpowder', 'Caseinate']", "statistics": null}, "product_segment_text": {"dtype": "object", "non_null_count": "137", "null_count": "0", "unique_values": "16", "sample_values": "['dairy,bakery & sweets,nutrition,savoury,single ingredients', 'bakery & sweets', 'bakery & sweets,savoury', 'dairy,bakery & sweets,single ingredients', 'dairy']", "statistics": null}, "dairy": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[True, False]", "statistics": {"count": 137, "unique": 2, "top": true, "freq": 72}}, "bakery_sweets": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[True, False]", "statistics": {"count": 137, "unique": 2, "top": true, "freq": 90}}, "nutrition": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[True, False]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 91}}, "savoury": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[True, False]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 79}}, "single_ingredients": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[True, False]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 99}}, "kosher": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[True, False]", "statistics": {"count": 137, "unique": 2, "top": true, "freq": 111}}, "super_kosher": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 135}}, "halal": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[True, False]", "statistics": {"count": 137, "unique": 2, "top": true, "freq": 118}}, "vlog": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 125}}, "bio": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 136}}, "rspo_mb": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 132}}, "rspo_sg": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 125}}, "vegetarian": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[True, False]", "statistics": {"count": 137, "unique": 2, "top": true, "freq": 96}}, "vegan": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 132}}, "palmfree": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[True, False]", "statistics": {"count": 137, "unique": 2, "top": true, "freq": 83}}, "clean": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[True, False]", "statistics": {"count": 137, "unique": 2, "top": true, "freq": 72}}, "acid_stable": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 135}}, "palm_fat": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 114}}, "dairy_fat_fat": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 118}}, "sunflower_fat": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 134}}, "rapeseed_fat": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 136}}, "hydrogenated_fat": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 114}}, "non_hydrogenated_fat": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 117}}, "fat_content_below_40": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 124}}, "fat_content_between_40_and_70": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 110}}, "fat_content_between_70_and_80": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 131}}, "protein_content_below_20": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "1", "sample_values": "[False]", "statistics": {"count": 137, "unique": 1, "top": false, "freq": 137}}, "protein_content_between_20_and_50": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 129}}, "protein_content_between_50_and_70": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[False, True]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 132}}, "protein_content_between_70_and_95": {"dtype": "bool", "non_null_count": "137", "null_count": "0", "unique_values": "2", "sample_values": "[True, False]", "statistics": {"count": 137, "unique": 2, "top": false, "freq": 111}}}, "sample_rows": [{"product_name_alias": "Product 181", "product_description": "Suitable for all food products incl. infant wet blends", "shelflife": "36 months", "CN_code": "1702 1100", "country_of_origin": "DE", "product_group": "Lactose", "product_segment_text": "dairy,bakery & sweets,nutrition,savoury,single ingredients", "dairy": true, "bakery_sweets": true, "nutrition": true, "savoury": true, "single_ingredients": true, "kosher": true, "super_kosher": false, "halal": true, "vlog": true, "bio": false, "rspo_mb": false, "rspo_sg": false, "vegetarian": true, "vegan": false, "palmfree": true, "clean": true, "acid_stable": false, "palm_fat": false, "dairy_fat_fat": false, "sunflower_fat": false, "rapeseed_fat": false, "hydrogenated_fat": false, "non_hydrogenated_fat": false, "fat_content_below_40": false, "fat_content_between_40_and_70": false, "fat_content_between_70_and_80": false, "protein_content_below_20": false, "protein_content_between_20_and_50": false, "protein_content_between_50_and_70": false, "protein_content_between_70_and_95": false}, {"product_name_alias": "Product 106", "product_description": "Hydrogenated dairy oil 60%, includes SWP and Lactose, milky taste, freeze and thaw stable, high whitening power", "shelflife": "18 months", "CN_code": "2106 9092", "country_of_origin": "DE", "product_group": "Fat Powder", "product_segment_text": "bakery & sweets", "dairy": false, "bakery_sweets": true, "nutrition": false, "savoury": false, "single_ingredients": false, "kosher": false, "super_kosher": false, "halal": false, "vlog": false, "bio": false, "rspo_mb": false, "rspo_sg": false, "vegetarian": false, "vegan": false, "palmfree": false, "clean": false, "acid_stable": false, "palm_fat": false, "dairy_fat_fat": true, "sunflower_fat": false, "rapeseed_fat": false, "hydrogenated_fat": true, "non_hydrogenated_fat": false, "fat_content_below_40": false, "fat_content_between_40_and_70": true, "fat_content_between_70_and_80": false, "protein_content_below_20": false, "protein_content_between_20_and_50": false, "protein_content_between_50_and_70": false, "protein_content_between_70_and_95": false}]}
+{
+    "object_type": "table",
+    "table_name": "products",
+    "schema": {
+        "product_name_alias": {
+            "dtype": "object",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "137",
+            "sample_values": "['Product 101', 'Product 102', 'Product 103', 'Product 104', 'Product 105']"
+        },
+        "product_description": {
+            "dtype": "object",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "102",
+            "sample_values": "['Casein', 'Hydrogenated dairy oil 40%, includes SWP and Lactose, milky taste, freeze and thaw stable', 'Hydrogenated dairy oil 60%, includes SWP and Lactose, milky taste, freeze and thaw stable, high whitening power ', 'Milk Protein Compound', 'High protein ~74% + lactose, egg replacer in bakery applications']"
+        },
+        "shelflife": {
+            "dtype": "object",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "5",
+            "sample_values": "['36 months', '18 months', '24 months', '12 months', '15 months']"
+        },
+        "CN_code": {
+            "dtype": "object",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "13",
+            "sample_values": "['3501 1090', '1901 9099', '2106 9092', '2106 9098', '3502 2091']"
+        },
+        "country_of_origin": {
+            "dtype": "object",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "5",
+            "sample_values": "['DE', 'AT', 'CH', 'US', 'NL']"
+        },
+        "product_group": {
+            "dtype": "object",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "16",
+            "sample_values": "['Casein', 'Fat Powder', 'Milk Protein Compound', 'Buttermilkpowder', 'Caseinate']"
+        },
+        "product_segment_text": {
+            "dtype": "object",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "16",
+            "sample_values": "['dairy,bakery & sweets,nutrition,savoury,single ingredients', 'bakery & sweets', 'bakery & sweets,savoury', 'dairy,bakery & sweets,single ingredients', 'dairy']"
+        },
+        "dairy": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[True, False]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": true,
+                "freq": 72
+            }
+        },
+        "bakery_sweets": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[True, False]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": true,
+                "freq": 90
+            }
+        },
+        "nutrition": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[True, False]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 91
+            }
+        },
+        "savoury": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[True, False]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 79
+            }
+        },
+        "single_ingredients": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[True, False]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 99
+            }
+        },
+        "kosher": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[True, False]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": true,
+                "freq": 111
+            }
+        },
+        "super_kosher": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 135
+            }
+        },
+        "halal": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[True, False]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": true,
+                "freq": 118
+            }
+        },
+        "vlog": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 125
+            }
+        },
+        "bio": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 136
+            }
+        },
+        "rspo_mb": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 132
+            }
+        },
+        "rspo_sg": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 125
+            }
+        },
+        "vegetarian": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[True, False]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": true,
+                "freq": 96
+            }
+        },
+        "vegan": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 132
+            }
+        },
+        "palmfree": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[True, False]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": true,
+                "freq": 83
+            }
+        },
+        "clean": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[True, False]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": true,
+                "freq": 72
+            }
+        },
+        "acid_stable": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 135
+            }
+        },
+        "palm_fat": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 114
+            }
+        },
+        "dairy_fat_fat": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 118
+            }
+        },
+        "sunflower_fat": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 134
+            }
+        },
+        "rapeseed_fat": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 136
+            }
+        },
+        "hydrogenated_fat": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 114
+            }
+        },
+        "non_hydrogenated_fat": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 117
+            }
+        },
+        "fat_content_below_40": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 124
+            }
+        },
+        "fat_content_between_40_and_70": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 110
+            }
+        },
+        "fat_content_between_70_and_80": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 131
+            }
+        },
+        "protein_content_below_20": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "1",
+            "sample_values": "[False]",
+            "statistics": {
+                "count": 137,
+                "unique": 1,
+                "top": false,
+                "freq": 137
+            }
+        },
+        "protein_content_between_20_and_50": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 129
+            }
+        },
+        "protein_content_between_50_and_70": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[False, True]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 132
+            }
+        },
+        "protein_content_between_70_and_95": {
+            "dtype": "bool",
+            "non_null_count": "137",
+            "null_count": "0",
+            "unique_values": "2",
+            "sample_values": "[True, False]",
+            "statistics": {
+                "count": 137,
+                "unique": 2,
+                "top": false,
+                "freq": 111
+            }
+        }
+    },
+    "sample_rows": [
+        {
+            "product_name_alias": "Product 181",
+            "product_description": "Suitable for all food products incl. infant wet blends",
+            "shelflife": "36 months",
+            "CN_code": "1702 1100",
+            "country_of_origin": "DE",
+            "product_group": "Lactose",
+            "product_segment_text": "dairy,bakery & sweets,nutrition,savoury,single ingredients",
+            "dairy": true,
+            "bakery_sweets": true,
+            "nutrition": true,
+            "savoury": true,
+            "single_ingredients": true,
+            "kosher": true,
+            "super_kosher": false,
+            "halal": true,
+            "vlog": true,
+            "bio": false,
+            "rspo_mb": false,
+            "rspo_sg": false,
+            "vegetarian": true,
+            "vegan": false,
+            "palmfree": true,
+            "clean": true,
+            "acid_stable": false,
+            "palm_fat": false,
+            "dairy_fat_fat": false,
+            "sunflower_fat": false,
+            "rapeseed_fat": false,
+            "hydrogenated_fat": false,
+            "non_hydrogenated_fat": false,
+            "fat_content_below_40": false,
+            "fat_content_between_40_and_70": false,
+            "fat_content_between_70_and_80": false,
+            "protein_content_below_20": false,
+            "protein_content_between_20_and_50": false,
+            "protein_content_between_50_and_70": false,
+            "protein_content_between_70_and_95": false
+        },
+        {
+            "product_name_alias": "Product 106",
+            "product_description": "Hydrogenated dairy oil 60%, includes SWP and Lactose, milky taste, freeze and thaw stable, high whitening power ",
+            "shelflife": "18 months",
+            "CN_code": "2106 9092",
+            "country_of_origin": "DE",
+            "product_group": "Fat Powder",
+            "product_segment_text": "bakery & sweets",
+            "dairy": false,
+            "bakery_sweets": true,
+            "nutrition": false,
+            "savoury": false,
+            "single_ingredients": false,
+            "kosher": false,
+            "super_kosher": false,
+            "halal": false,
+            "vlog": false,
+            "bio": false,
+            "rspo_mb": false,
+            "rspo_sg": false,
+            "vegetarian": false,
+            "vegan": false,
+            "palmfree": false,
+            "clean": false,
+            "acid_stable": false,
+            "palm_fat": false,
+            "dairy_fat_fat": true,
+            "sunflower_fat": false,
+            "rapeseed_fat": false,
+            "hydrogenated_fat": true,
+            "non_hydrogenated_fat": false,
+            "fat_content_below_40": false,
+            "fat_content_between_40_and_70": true,
+            "fat_content_between_70_and_80": false,
+            "protein_content_below_20": false,
+            "protein_content_between_20_and_50": false,
+            "protein_content_between_50_and_70": false,
+            "protein_content_between_70_and_95": false
+        }
+    ]
+}
