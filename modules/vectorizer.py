@@ -20,7 +20,7 @@ def convert_str_to_list(obj):
     return obj
 
 
-def vectorize_dataframe(df):
+def vectorize_dataframe_columns(df):
 
     # df = pd.DataFrame(df, index=None)  # Ensure df is a DataFrame
 

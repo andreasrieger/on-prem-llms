@@ -5,16 +5,16 @@ from collections.abc import Iterable
 
 def f(v):
     if isinstance(v, tuple):
-        return str(v[0])
+        return v[0]
     return v
 
 
 def get_column_info(df, column):
-    # return df[column].explode().nunique()
     column_info = {}
-    column_info["dtype"] = df[column].dtype,
-    column_info["non_null_count"] = df[column].count(),
-    column_info["null_count"] = df[column].isnull().sum(),
+    # column_info["dtype"] = df[column].dtype,
+    column_info['dtype'] = str(df[column].dtype),
+    column_info["non_null_count"] = int(df[column].count()),
+    column_info["null_count"] = int(df[column].isnull().sum()),
     column_info["unique_values"] = df[column].explode().nunique(),
     column_info["sample_values"] = df[column].dropna().unique()[:5].tolist(),
     column_info["statistics"] = df[column].describe().to_dict() if pd.api.types.is_numeric_dtype(df[column]) else None
@@ -35,7 +35,18 @@ def read_knowledge_from_file(filename="knowledge.json"):
     return json.dumps(parsed, indent=4)
 
 
+def convert_pd_object_values_to_str(df):
+    object_columns = df.select_dtypes(include=['object']).columns.tolist()
+    if len(object_columns) > 0:
+        df[object_columns] = df[object_columns].astype('string')
+    return df
+
+
 def generate_knowledge(df):
+    # Convert object columns to string type
+    df = convert_pd_object_values_to_str(df)
+    # return df
+
     # Create knowledge dictionary with table schema information
     knowledge = {}
     knowledge["object_type"] = "table"
@@ -45,6 +56,7 @@ def generate_knowledge(df):
     schema_info = {}
     for column in df.columns:
         schema_info[column] = get_column_info(df, column)
+    # return schema_info
 
     knowledge["schema"] = schema_info
 
@@ -52,6 +64,7 @@ def generate_knowledge(df):
     sample_rows = df.sample(2, random_state=1)
 
     knowledge["sample_rows"] = sample_rows.to_dict(orient="records")
+    # return knowledge
 
     knowledge_json = json.dumps(knowledge, indent=4)
     write_knowledge_to_file(knowledge_json)
