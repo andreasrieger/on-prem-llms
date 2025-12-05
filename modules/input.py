@@ -1,4 +1,13 @@
+import glob
+from modules import path
 from typing import AnyStr, Optional
+
+
+def list_files_in_downloads(fext) -> list[AnyStr]:
+    # listing all csv files in download directory
+    downloads = path.get_download_folder()
+    file_list = glob.glob(downloads+'/*.{}'.format(fext))
+    return file_list
 
 
 def get_user_input(prompt: str, default: Optional[str] = None) -> str:

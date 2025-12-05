@@ -2,13 +2,13 @@
 # Using Ollama to generate embeddings
 # may take some time depending on the size of the dataframe
 
-import ollama, json
+import ollama, json, sys
 import pandas as pd
 
 
 # Function to generate embeddings
 def generate_embeddings(obj):
-    model = "mxbai-embed-large"
+    model = "mxbai-embed-large" # byte size of vector is 8248
     return ollama.embeddings(model, obj)["embedding"]
 
 
@@ -20,6 +20,7 @@ def convert_str_to_list(obj):
     return obj
 
 
+# @to do: refactor to do only one thing
 def vectorize_dataframe_columns(df):
 
     # df = pd.DataFrame(df, index=None)  # Ensure df is a DataFrame
@@ -33,9 +34,13 @@ def vectorize_dataframe_columns(df):
 
     df['embedding'] = None  # Initialize the embedding column
 
+    byte_sizes = []
     # Generate embeddings for each row in the DataFrame
     for i, row in df.iterrows():
+        # byte_sizes.append(sys.getsizeof(row['json_data']))
         # Convert the json string into a vector
-        df.at[i, 'embedding'] = generate_embeddings(row['json_data'])
+        vec = generate_embeddings(row['json_data'])
+        df.at[i, 'embedding'] = vec
 
     return df
+    return byte_sizes
