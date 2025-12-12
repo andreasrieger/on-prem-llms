@@ -10,7 +10,7 @@ from qdrant_client.models import PointStruct, Distance, VectorParams
 
 # Initialize Qdrant client
 # qdrant_client = QdrantClient(host="localhost", port=6333)
-qdrant_client = QdrantClient(":memory:")
+# qdrant_client = QdrantClient(":memory:")
 
 
 # Load the dataframe with embeddings
@@ -49,8 +49,8 @@ def store_vectors_in_qdrant(df, collection_name, payload):
 
 
 # Perform a search in the collection
-def perform_search_in_qdrant(query, collection_name, payload, limit=3):
-    return qdrant_client.query_points(
+def perform_search_in_qdrant(client, query, collection_name, payload, limit=3):
+    return client.query_points(
         collection_name=collection_name,
         query=query,
         with_vectors=True,
