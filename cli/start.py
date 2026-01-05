@@ -1,4 +1,5 @@
-from my_package import usecases, filemanager, storage, userinput, embedding
+import os, sys
+from mypackage import usecases, filemanager, storage, userinput, embedding
 
 # !{sys.executable} -m pip install qdrant-client ollama sqlalchemy langchain-text-splitter
 
@@ -81,4 +82,5 @@ def main():
 
 
 if __name__ == "__main__":
+    usecases.get_git_root(os.path.dirname(os.path.abspath(__file__)))
     main()
