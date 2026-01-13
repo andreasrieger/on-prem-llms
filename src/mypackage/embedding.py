@@ -3,8 +3,7 @@
 # Using Ollama to generate embeddings
 # may take some time depending on the size of the dataframe
 
-import ollama, json, sys
-import pandas as pd
+import ollama
 
 
 # Function to generate embeddings
@@ -23,14 +22,12 @@ def convert_str_to_list(obj):
 #@andreasrieger: refactor to do only one thing
 def vectorize_dataframe_columns(df):
 
-    # df = pd.DataFrame(df, index=None)  # Ensure df is a DataFrame
 
     # Preprocess the DataFrame: strip whitespace and handle missing values
     df.map(lambda x: x.strip() if isinstance(x, str) else x).fillna('null')
 
     # Convert each row of the DataFrame to a JSON string
     df['json_data'] = df.apply(lambda row: row.to_json(), axis=1)
-    # df['json_data'] = df.apply(lambda row: json.dumps(row.to_dict(), ensure_ascii=False), axis=1)
 
     df['embedding'] = None  # Initialize the embedding column
 

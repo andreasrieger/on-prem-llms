@@ -1,5 +1,5 @@
 from qdrant_client import QdrantClient
-from my_package import userinput
+from mypackage import userinput
 
 
 

@@ -1,7 +1,6 @@
 import os, json
 import pandas as pd
 import numpy as np
-from mypackage import storage
 
 
 def get_file_list(input_dir):
@@ -72,11 +71,7 @@ def read_markdown_file(file_path: str) -> str:
 def process_markdown_files(input_dir):
     file_list = get_file_list_filtered(input_dir, '.md')
     for file_path in file_list:
-        print(f"Found file: {file_path}")
-        file_content = read_markdown_file(file_path)
-        print(f"File content preview: {file_content[:200]}")  # Print first 100 characters of the file content
-        db = storage.create_table()
-        storage.write_db(db, file_path, "title", "content_date", file_content)
+        return read_markdown_file(file_path)
 
 
 
@@ -134,23 +129,33 @@ def summarize_text_chunk(text_chunk: str, max_tokens: int = 100) -> str:
 def process_document_files(input_dir) -> list:
     file_list = get_file_list_filtered(input_dir, ('.pdf', '.docx', '.txt'))
     for file_path in file_list:
-        print(f"Found document file: {file_path}")
+        print(f"Processing file: {file_path}")
         # Here you can add code to read and process the document files as needed
         # For example, extract text from PDFs or Word documents
         # This is a placeholder for actual document processing logic
         file_content = read_pdf_file(file_path) if file_path.lower().endswith('.pdf') else \
                        read_docx_file(file_path) if file_path.lower().endswith('.docx') else \
                        read_txt_file(file_path)
-        # print(f"File content preview: {str(file_content)[:100]}")  # Print first 100 characters of the file content
-        # print(type(file_content))
         return file_content
+
+
+def process_pdf_file(file_path: str) -> list:
+    return read_pdf_file(file_path)
+
+
+# Function to reorder DataFrame columns
+def reorder_dataframe_columns(dataframe, cols_to_move):
+    cols = list(dataframe.columns)
+    for col in cols_to_move:
+        if col in cols:
+            cols.insert(cols_to_move.index(col), cols.pop(cols.index(col)))
+    return dataframe[cols]
 
 
 # Function to keep only string values and True boolean values
 def keep_string_or_true(row):
     kept = {}
     for col, val in row.items():
-        # print(f"col: {col}, val: {val} ({type(val)})")
 
         if pd.isna(val) or val is None:
             continue
@@ -160,7 +165,6 @@ def keep_string_or_true(row):
 
         if isinstance(val, np.ndarray) and val.size > 1:
             print(val)
-            # kept[col] = val.any() # @andreasrieger: refactor to get clean array / list
             continue
 
         if isinstance(val, np.ndarray) and val.size > 0:
@@ -173,7 +177,5 @@ def keep_string_or_true(row):
 
         if val is True:
             kept[col] = val
-
-        # print(f"kept: {kept}")
 
     return json.dumps(kept)

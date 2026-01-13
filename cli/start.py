@@ -1,5 +1,4 @@
-import os, sys
-from mypackage import usecases, filemanager, storage, userinput, embedding
+from mypackage import usecases, filemanager, storage, retriever, userinput, embedding
 
 # !{sys.executable} -m pip install qdrant-client ollama sqlalchemy langchain-text-splitter
 
@@ -16,7 +15,7 @@ def get_user_query():
 
 # Perform search in Qdrant
 def search(client, query, collection_name, limit=3):
-    return storage.perform_search_in_qdrant(
+    return retriever.perform_search_in_qdrant(
         client = client,
         query = query,
         collection_name = collection_name,
@@ -82,5 +81,4 @@ def main():
 
 
 if __name__ == "__main__":
-    usecases.get_git_root(os.path.dirname(os.path.abspath(__file__)))
     main()

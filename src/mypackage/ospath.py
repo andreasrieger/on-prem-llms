@@ -43,4 +43,3 @@ else:
     def get_download_folder():
         home = os.path.expanduser("~")
         return os.path.join(home, "Downloads")
-

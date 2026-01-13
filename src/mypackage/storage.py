@@ -4,6 +4,9 @@
 
 import sqlite3
 from sqlalchemy import create_engine
+from sqlalchemy import MetaData
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy_utils import create_database, database_exists
 from qdrant_client import QdrantClient
 from qdrant_client.models import PointStruct, Distance, VectorParams
 
@@ -14,8 +17,8 @@ _qdrant_client = None
 def get_qdrant_client():
     global _qdrant_client
     if _qdrant_client is None:
-        _qdrant_client = QdrantClient(url="http://localhost:6333")
-        # _qdrant_client = QdrantClient(":memory:")
+        # _qdrant_client = QdrantClient(url="http://localhost:6333")
+        _qdrant_client = QdrantClient(":memory:")
     return _qdrant_client
 
 
@@ -58,70 +61,34 @@ def store_vectors_in_qdrant(client, collection_name, df, payload):
     return operation_info
 
 
-# Perform a search in the collection
-def perform_search_in_qdrant(client, collection_name, query, limit=3):
-    return client.query_points(
-        collection_name=collection_name,
-        query=query,
-        with_vectors=True,
-        with_payload=True,
-        limit=limit,
-    ).points
+
+def create_sqlite_engine(db_path):
+    '''Function to create a SQLAlchemy engine for SQLite database'''
+    engine = create_engine(f'sqlite+pysqlite:///{db_path}')
+
+    return engine
+
+
+def get_sqlite_metadata(engine):
+    '''Function to get metadata of the SQLite database'''
+    metadata = MetaData()
+    metadata.reflect(bind=engine)
+    return metadata
+
+
+def check_table_exists(engine, table_name):
+    '''Function to check if a table exists in the SQLite database'''
+    metadata = get_sqlite_metadata(engine)
+    return table_name in metadata.tables
+
 
 
 
 
 # SQLite database functions
-def write_df_to_sqlite(df):
+def write_df_to_sqlite(engine, df):
 
     '''Function to write a pandas DataFrame to an SQLite database'''
-    engine = create_engine("sqlite+pysqlite:///:memory:", echo=False, future=True)
     res = df.to_sql("products", con=engine, if_exists="replace", index=False)
     return res
 
-
-# Create table in SQLite database
-def create_table():
-
-    '''Function to create the database table if it does not exist'''
-
-    db = sqlite3.connect('db.sqlite')
-    c = db.cursor()
-    c.execute('''
-            CREATE TABLE if not exists site_content (
-                  id INTEGER PRIMARY KEY,
-                  file_name VARCHAR(30),
-                  title TEXT,
-                  content_date TEXT,
-                  file_content TEXT
-            );
-    ''')
-    db.commit()
-    return db
-
-
-# Write data to SQLite database
-def write_db(db, file_name, title, content_date, file_content):
-
-    '''Function to write data to database'''
-
-    c = db.cursor()
-    sql = '''
-        INSERT INTO site_content(file_name, title, content_date, file_content)
-        VALUES (?,?,?,?)
-    '''
-    c.execute(sql, (file_name, title, content_date, file_content))
-    db.commit()
-
-
-# Read data from SQLite database
-def read_db(db):
-
-    '''Function to read the database'''
-
-    c = db.cursor()
-    sql = '''
-        SELECT * FROM site_content
-    '''
-    c.execute(sql)
-    return c.fetchall()
