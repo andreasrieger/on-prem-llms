@@ -9,7 +9,6 @@ def perform_search_in_qdrant(client, collection_name, query, limit=3):
     ).points
 
 
-
 # Read data from SQLite database
 def read_db(db):
 

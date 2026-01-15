@@ -179,3 +179,4 @@ cython_debug/
 
 # project specific files
 output/*
+data/Chinook.db

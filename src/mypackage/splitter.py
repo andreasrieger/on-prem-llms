@@ -1,7 +1,7 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
-def text_chunking(text, chunk_size=1024):
+def get_chunks_from_text(text, chunk_size=1024):
     # Initialize the text splitter
     text_splitter = RecursiveCharacterTextSplitter(
         separators=["\n\n", "\n", " ", ""],

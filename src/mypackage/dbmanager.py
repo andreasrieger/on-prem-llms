@@ -39,7 +39,6 @@ def store_vectors_in_qdrant(client, collection_name, df, payload):
 
     # Prepare points to be uploaded
     points = []
-
     for idx, row in df.iterrows():
         point = PointStruct(
             id=idx,
@@ -61,12 +60,9 @@ def store_vectors_in_qdrant(client, collection_name, df, payload):
     return operation_info
 
 
-
 def create_sqlite_engine(db_path):
     '''Function to create a SQLAlchemy engine for SQLite database'''
-    engine = create_engine(f'sqlite+pysqlite:///{db_path}')
-
-    return engine
+    return create_engine(f'sqlite+pysqlite:///{db_path}')
 
 
 def get_sqlite_metadata(engine):
@@ -82,13 +78,7 @@ def check_table_exists(engine, table_name):
     return table_name in metadata.tables
 
 
-
-
-
 # SQLite database functions
 def write_df_to_sqlite(engine, df):
-
     '''Function to write a pandas DataFrame to an SQLite database'''
-    res = df.to_sql("products", con=engine, if_exists="replace", index=False)
-    return res
-
+    return df.to_sql("products", con=engine, if_exists="replace", index=False)

@@ -1,5 +1,6 @@
 import json
 import pandas as pd
+import numpy as np
 from collections.abc import Iterable
 
 
@@ -11,7 +12,6 @@ def f(v):
 
 def get_column_info(df, column):
     column_info = {}
-    # column_info["dtype"] = df[column].dtype,
     column_info['dtype'] = str(df[column].dtype),
     column_info["non_null_count"] = int(df[column].count()),
     column_info["null_count"] = int(df[column].isnull().sum()),
@@ -66,3 +66,32 @@ def generate_knowledge(df):
     knowledge_json = json.dumps(knowledge, indent=4)
     write_knowledge_to_file(knowledge_json)
     return knowledge_json
+
+
+# Function to keep only string values and True boolean values
+def keep_string_or_true(row):
+    kept = {}
+    for col, val in row.items():
+
+        if pd.isna(val) or val is None:
+            continue
+
+        if isinstance(val, np.ndarray) and val.size < 1:
+            continue
+
+        if isinstance(val, np.ndarray) and val.size > 1:
+            print(val)
+            continue
+
+        if isinstance(val, np.ndarray) and val.size > 0:
+            kept[col] = val.tolist()
+
+
+        if isinstance(val, str) and val.strip() != "":
+            kept[col] = val.strip()
+
+
+        if val is True:
+            kept[col] = val
+
+    return json.dumps(kept)

@@ -1,5 +1,15 @@
 from typing import Optional
 
+# Get user input
+def get_user_query() -> str:
+    # Get and validate user input
+    qry = get_user_input("Enter search term")
+    if validate_search_term(qry):
+        # Proceed with search
+        pass
+    return qry
+
+
 def get_user_input(prompt: str, default: Optional[str] = None) -> str:
     """
     Get input from user with optional default value.

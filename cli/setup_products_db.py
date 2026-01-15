@@ -1,17 +1,12 @@
 import os
 import pandas as pd
-from mypackage import ospath, docroot, userinput, filemanager, datapreparation
+from mypackage import finder, preparator, userinput
 from sqlalchemy import String, Table, Column, Integer, String, Float, Boolean, create_engine
 from sqlalchemy.orm import DeclarativeBase, mapped_column
 
 pd.set_option('display.max_colwidth', None)
 pd.set_option("mode.copy_on_write", True) # see: https://pandas.pydata.org/pandas-docs/stable/user_guide/copy_on_write.html#copy-on-write-chained-assignment
 pd.set_option('future.no_silent_downcasting', True)
-
-_input_dir = docroot.get_input_dir() + os.sep
-_download_dir = ospath.get_download_folder()
-
-_data_dir = docroot.get_data_dir() + os.sep
 
 
 # Creating Base class for database setup
@@ -22,8 +17,11 @@ class Base(DeclarativeBase):
 # Storing dataframe to products database
 def store_dataframe_to_db(df):
 
+    data_dir = os.path.join(finder.get_git_root(), "data")
     db_name = 'products.db'
-    engine = create_engine(f"sqlite:////{_data_dir}{db_name}")
+    db_path = os.path.join(data_dir, db_name)
+
+    engine = create_engine(f"sqlite:////{db_path}")
 
     Base.metadata.create_all(engine)
 
@@ -96,10 +94,10 @@ def get_reshaped_dataframe(dataframe):
     df = dataframe.copy()
 
     # getting column names at level 0 and identifying duplicates
-    dupcols = datapreparation.get_duplicate_column_names(df)
+    dupcols = preparator.get_duplicate_column_names(df)
 
     # iterating through unique columns
-    unique_cols = datapreparation.get_unique_column_names(df)
+    unique_cols = preparator.get_unique_column_names(df)
 
     # Removing white spaces from values
     df.map(lambda x: x.strip() if isinstance(x, str) else x)
@@ -108,7 +106,6 @@ def get_reshaped_dataframe(dataframe):
     df.replace('x', True, inplace=True)
 
     df_reshaped = pd.DataFrame()
-
     for col in unique_cols:
         if col in dupcols:
             df_temp = df.xs(col, axis=1, level=0, drop_level=False)
@@ -122,12 +119,15 @@ def get_reshaped_dataframe(dataframe):
 
 def main():
 
+    # Get download folder from user
+    download_dir = finder.get_download_folder()
+
     # Get input directory from user
-    input_dir = userinput.get_user_input("Input directory", default=_input_dir)
+    input_dir = userinput.get_user_input("Input directory", default=download_dir)
 
     # List files in the input directory
-    file_list = filemanager.get_files_in_directory(input_dir, extensions=[".xlsx", ".xls"])
-    filemanager.print_enumerated_file_list(file_list)
+    file_list = finder.get_file_list(input_dir, extensions=[".xlsx", ".xls"])
+    finder.print_enumerated_list(file_list)
 
     # Get selected file from user
     selected_file_num = userinput.get_user_input("Select a file by number", default="1")
@@ -135,16 +135,21 @@ def main():
 
     # Create dataframe from excel file
     df = pd.read_excel(selected_file_path, header=[0,1])
+
+    # Preprocess the DataFrame: strip whitespace and handle missing values
+    df.map(lambda x: x.strip() if isinstance(x, str) else x).fillna('null')
+
+    # Reshaping dataframe
     df = get_reshaped_dataframe(df)
 
     # Retrieving dataframe column names, transform and re-assign to df
     colnames = df.columns
-    db_ready_colnames = datapreparation.get_db_ready_column_names(colnames)
+    db_ready_colnames = preparator.get_db_ready_column_names(colnames)
     df.columns = db_ready_colnames[:]
 
     # Reordering columns to have 'product_name_alias' first if it exists
     cols_to_reorder = ['product_name_alias', 'fat_content_minimum%', 'fat_content_maximum%', 'protein_content_minimum%', 'protein_content_maximum%']
-    df = filemanager.reorder_dataframe_columns(df, cols_to_reorder)
+    df = finder.reorder_dataframe_columns(df, cols_to_reorder)
 
     res = store_dataframe_to_db(df)
     print(res)
