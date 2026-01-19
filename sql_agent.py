@@ -1,9 +1,9 @@
 import os
-from mypackage import finder, userinput
 from langchain.agents import create_agent
 from langchain.chat_models import init_chat_model
 from langchain_community.agent_toolkits import SQLDatabaseToolkit
 from langchain_community.utilities import SQLDatabase
+from mypackage import finder, userinput
 
 data_dir = os.path.join(finder.get_git_root(), "data")
 db_name = 'products.db'
@@ -16,26 +16,20 @@ db = SQLDatabase.from_uri(f"sqlite:///{db_path}")
 # print(f"Available tables: {db.get_usable_table_names()}")
 # print(f'Sample output: {db.run("SELECT * FROM products LIMIT 3;")}')
 
-
-# Initialize the model
-# Important info: Ollama doesn't provide tool function for deepseek, ...
-# tool functions work with e.g. llama3.2, mistral, ...
 model = init_chat_model(
-    "llama3.2",
-    model_provider="ollama",
-    temperature=0,
-    top_p=1,
-    max_tokens=1024,
-    verbose=True,
-    stream=True,
+    model = "ministral-3",
+    model_provider = "ollama",
+    verbose = True,
+    stop = ["\n\n"],
+    temperature = 0.0,
+    max_tokens = 1024,
 )
 
 toolkit = SQLDatabaseToolkit(db=db, llm=model)
-
 tools = toolkit.get_tools()
 
-# for tool in tools:
-#     print(f"Tool name: {tool.name}, description: {tool.description}")
+for tool in tools:
+    print(f"Tool name: {tool.name}, description: {tool.description}")
 
 system_prompt = """
     You are an agent designed to interact with a SQL database.
@@ -59,30 +53,25 @@ system_prompt = """
     
     Then you should query the schema of the most relevant tables.
 """.format(
-    dialect=db.dialect,
-    top_k=3,
+        dialect=db.dialect,
+        top_k=3,
 )
 
+agent = create_agent(
+    model,
+    tools,
+    system_prompt=system_prompt
+)
 
 def main():
 
-    exit_conditions = (":q", "quit", "exit")
+    user_query = userinput.get_user_input("Post your question!",
+                                          default="How much products are in the products table?")
+    inputs = {"messages": [{"role": "user", "content": user_query}]}
 
-    agent = create_agent(
-        model,
-        tools,
-        system_prompt=system_prompt
-    )
-
-    while True:
-        user_input = userinput.get_user_input("Stelle deine Frage:", default="How much products are in the database?")
-
-        if user_input in exit_conditions:
-            break
-        else:
-            inputs = {"messages": [{"role": "user", "content": user_input}]}
-            for step in agent.stream(inputs, stream_mode="values"):
-                step["messages"][-1].pretty_print()
+    # Model is calling 'sql_db_schema' instead of 'sql_db_query' - this is a different behavior as compared to the notebook!
+    for chunk in agent.stream(inputs, stream_mode="values"):
+        chunk["messages"][-1].pretty_print()
 
 if __name__ == "__main__":
     main()
