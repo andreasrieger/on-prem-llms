@@ -19,8 +19,8 @@ def get_duplicate_column_names(dataframe, level=0):
     dupcols_set = set()
 
     # collecting column names in given level
-    colnames = dataframe.columns.get_level_values(level)
-    return list({x for x in colnames if x in dupcols_set or dupcols_set.add(x)})
+    columns = dataframe.columns.get_level_values(level)
+    return list({x for x in columns if x in dupcols_set or dupcols_set.add(x)})
 
 
 def get_unique_column_names(dataframe, level=0):

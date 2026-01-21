@@ -28,8 +28,8 @@ model = init_chat_model(
 toolkit = SQLDatabaseToolkit(db=db, llm=model)
 tools = toolkit.get_tools()
 
-for tool in tools:
-    print(f"Tool name: {tool.name}, description: {tool.description}")
+# for tool in tools:
+#     print(f"Tool name: {tool.name}, description: {tool.description}")
 
 system_prompt = """
     You are an agent designed to interact with a SQL database.
@@ -65,13 +65,22 @@ agent = create_agent(
 
 def main():
 
-    user_query = userinput.get_user_input("Post your question!",
-                                          default="How much products are in the products table?")
-    inputs = {"messages": [{"role": "user", "content": user_query}]}
+    print("Starting SQL agent...")
 
-    # Model is calling 'sql_db_schema' instead of 'sql_db_query' - this is a different behavior as compared to the notebook!
-    for chunk in agent.stream(inputs, stream_mode="values"):
-        chunk["messages"][-1].pretty_print()
+    # Initialize chatbot
+    exit_conditions = (":q", "quit", "exit")
+    while True:
+        # Get user query
+        user_query = userinput.get_user_input("Post your question! (Or quit with ':q')",
+                                              default="How much products are in the products table?")
+        if user_query in exit_conditions:
+            break
+        else:
+            input = {"messages": [{"role": "user", "content": user_query}]}
+            for event in agent.stream(input=input, stream_mode="values"):
+                event["messages"][-1].pretty_print()
+
+
 
 if __name__ == "__main__":
     main()

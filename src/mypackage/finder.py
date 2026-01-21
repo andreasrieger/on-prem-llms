@@ -82,22 +82,12 @@ def get_file_content_dict(filehandler) -> dict:
     return file_content_dict
 
 
-def get_file_content_list(filehandler) -> list:
-    file_content_dict = {}
-    file_content_list = []
-    for page_num, page in enumerate(filehandler.pages):
-        text = page.extract_text()
-        file_content_dict = {
-            "page_number": page_num + 1,
-            "text": text
-        }
-        file_content_list.append(file_content_dict)
-    return file_content_list
-
-
-# collecting all the text from the pdf file
-def read_pdf_file(file_path: str) -> list:
-    return get_file_content_list(PdfReader(file_path))
+def get_pdf_contents(file) -> list:
+    reader = PdfReader(file)
+    contents = []
+    for page_num, page in enumerate(reader.pages):
+        contents.append(page.extract_text())
+    return contents
 
 
 def summarize_text_chunk(text_chunk: str, max_tokens: int = 100) -> str:
