@@ -116,7 +116,7 @@ def main():
     exit_conditions = (":q", "quit", "exit")
     while True:
         # Get user query
-        user_query = userinput.get_user_input("Post your question! (Or quit with ':q')", default="What means 'few-shot learning' and where in the document it is described?")
+        user_query = userinput.get_user_input("Post your question! (Or quit with ':q')", default="What is the document about?")
         if user_query in exit_conditions:
             break
         else:

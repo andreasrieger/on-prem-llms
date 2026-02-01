@@ -11,12 +11,12 @@ This project provides tools for building AI agents that run entirely on-premises
 
 ## Features
 
-- 🔒 Fully on-premises deployment with local LLM models (via Ollama)
-- 📚 Document processing and vector storage with Qdrant
-- 🤖 LangChain-based agent orchestration
-- 💾 SQLite database integration
-- 📄 PDF document processing
-- 🔍 Semantic search capabilities
+- Fully on-premises deployment with local LLM models (via Ollama)
+- Document processing and vector storage with Qdrant
+- LangChain-based agent orchestration
+- SQLite database integration
+- PDF document processing
+- Semantic search capabilities
 
 ## Installation
 
@@ -129,3 +129,7 @@ MIT License
 ## Author
 
 Andreas Rieger (dev@rieger.digital)
+
+---
+
+*This README was generated with AI assistance.*
