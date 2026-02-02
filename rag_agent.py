@@ -1,6 +1,5 @@
 import os
 from typing import Any, Sequence
-
 from langchain_core.documents import Document
 from langchain_ollama import OllamaEmbeddings, ChatOllama
 from langchain_qdrant import QdrantVectorStore
@@ -98,7 +97,6 @@ def main():
 
 
     tools = [retrieve_context]
-    # If desired, specify custom instructions
 
     prompt = (
         "You have access to a tool that retrieves context from a document. Use the tool to help answer user queries and refer to a part and a page in the document when answering."
