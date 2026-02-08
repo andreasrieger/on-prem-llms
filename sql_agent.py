@@ -64,7 +64,13 @@ agent = create_agent(
 )
 
 def main():
+    """
+    Initialize and run the SQL agent for database querying.
 
+    This function sets up an interactive chat loop that allows users to query
+    a SQL database using natural language. The agent converts user questions
+    into SQL queries, executes them, and returns the results.
+    """
     print("Starting SQL agent...")
 
     # Initialize chatbot
